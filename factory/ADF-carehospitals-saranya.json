@@ -1,0 +1,15 @@
+{
+	"name": "ADF-carehospitals-saranya",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "indiasouthcentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "94786fd4-90a4-4ddd-a88d-9482680152a7",
+		"tenantId": "72ce91c4-eda4-4a8b-bbe4-503a18ac4aaf"
+	}
+}
