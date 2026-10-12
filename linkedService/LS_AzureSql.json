@@ -16,7 +16,7 @@
 					"referenceName": "LS_keyVault",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "AzureSQL-password"
+				"secretName": "azurrresql"
 			}
 		}
 	},
