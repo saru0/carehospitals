@@ -45,12 +45,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('readsourcetables').output",
+						"value": "@activity('readsourcetables').output.value",
 						"type": "Expression"
 					},
 					"activities": [
 						{
-							"name": "Set variable1",
+							"name": "test",
 							"type": "SetVariable",
 							"dependsOn": [],
 							"policy": {
@@ -65,16 +65,6 @@
 									"type": "Expression"
 								}
 							}
-						},
-						{
-							"name": "Set variable2",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"policy": {
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": []
 						}
 					]
 				}
