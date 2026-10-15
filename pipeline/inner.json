@@ -120,6 +120,84 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Landing to Bronze",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "source to landing ingestion",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/kamalaa1730@gmail.com/carehospitals-ADF/Landing_to_bronze",
+					"baseParameters": {
+						"source_system": {
+							"value": "@activity('Lookup2').output.firstRow.source_system",
+							"type": "Expression"
+						},
+						"table_name": {
+							"value": "@activity('Lookup2').output.firstRow.bronze_table_name",
+							"type": "Expression"
+						},
+						"landing_timestamp": {
+							"value": "@variables('time')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_databricks",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "bronze to silver",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Landing to Bronze",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/kamalaa1730@gmail.com/carehospitals-ADF/Bronze to Silver",
+					"baseParameters": {
+						"table_name": {
+							"value": "@activity('Lookup2').output.firstRow.silver_table_name",
+							"type": "Expression"
+						},
+						"landing_timestamp": {
+							"value": "@variables('time')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_databricks",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
